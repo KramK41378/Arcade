@@ -18,7 +18,7 @@ class ScreenSaverView(arcade.View):
                                      arcade.color.WHITE, font_size=40, anchor_x="center", batch=self.batch)
         self.space_text = arcade.Text("Нажми SPACE, чтобы начать!", self.window.width / 2, self.window.height / 2 - 50,
                                       arcade.color.WHITE, font_size=20, anchor_x="center", batch=self.batch)
-        self.background = arcade.load_texture("background.jpg")
+        self.background = arcade.load_texture("images/background.jpg")
 
     def on_draw(self):
         self.clear()
@@ -51,8 +51,8 @@ class MenuView(arcade.View):
 
         self.anchor_layout.add(self.box_layout)  # Box в anchor
         self.manager.add(self.anchor_layout)
-        
-        self.background = arcade.load_texture("background.jpg")
+
+        self.background = arcade.load_texture("images/background.jpg")
 
     def setup_widgets(self):
         change_person_button = UIFlatButton(text="Выбрать персонажа", width=400, height=80, color=arcade.color.BLUE)
