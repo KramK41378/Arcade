@@ -34,9 +34,9 @@ class Slug(arcade.Sprite):
 
         # сюда можно запихнуть наши текстуры
         self.textures = []
-        texture = arcade.load_texture(f":resources:images/enemies/slimePurple.png")
+        texture = arcade.load_texture(f"images/slime_purple1.png")
         self.textures.append(texture)
-        texture = arcade.load_texture(":resources:images/enemies/wormPink.png")
+        texture = arcade.load_texture("images/slime_purple2.png")
         self.textures.append(texture)
 
         self.texture = self.textures[0]
