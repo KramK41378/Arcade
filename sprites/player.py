@@ -1,13 +1,13 @@
 import arcade
 from typing_extensions import Literal
 
-SPEED: int = 200
+from constants import PLAYER_SPEED
+
 
 class V1(arcade.SpriteSolidColor):
-    def __init__(self, x, y):
+    def __init__(self, x: float, y: float, speed: int = PLAYER_SPEED):
         super().__init__(40, 100, x, y, arcade.types.Color(128, 128, 128))
-        self.y = y
-        self.speed = SPEED
+        self.speed = speed
 
         self.moving_left = False
         self.moving_right = False
@@ -19,12 +19,12 @@ class V1(arcade.SpriteSolidColor):
         self.change_y = 0
 
         if self.moving_right:
-            self.change_x = SPEED
+            self.change_x = self.speed
         if self.moving_left:
-            self.change_x -= SPEED
+            self.change_x -= self.speed
         if self.moving_up:
-            self.change_y = SPEED
+            self.change_y = self.speed
         if self.moving_down:
-            self.change_y -= SPEED
+            self.change_y -= self.speed
 
         super().update()

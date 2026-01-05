@@ -1,12 +1,14 @@
 import arcade
+from sprites.player import V1
+from constants import PLAYER_SPEED
 
 
 class Game(arcade.Window):
     def __init__(self, speed):
         super().__init__(800, 600, 'free Ultrakill clone')
-        self.v1: V1 = V1(self.center_x, self.center_y)
+        self.player: V1 = V1(self.center_x, self.center_y, PLAYER_SPEED)
         self.player_list: arcade.SpriteList = arcade.SpriteList()
-        self.player_list.append(self.v1)
+        self.player_list.append(self.player)
 
     def on_draw(self):
         self.clear()
@@ -16,32 +18,28 @@ class Game(arcade.Window):
         self.player_list.update()
 
     def on_key_press(self, symbol, modifiers):
-        print('key pressed')
-        if symbol == arcade.key.SPACE:
-            self.v1.jump = True if self.v1.in_air is False else False
         if symbol == arcade.key.D:
-            self.v1.moving_right = True
+            self.player.moving_right = True
         if symbol == arcade.key.A:
-            self.v1.moving_left = True
-        if symbol == arcade.key.LCTRL:
-            if self.v1.in_air:
-                self.v1.slam = True
-            else:
-                self.v1.sliding = True
+            self.player.moving_left = True
+        if symbol == arcade.key.W:
+            self.player.moving_up = True
+        if symbol == arcade.key.S:
+            self.player.moving_down = True
 
     def on_key_release(self, symbol, modifiers):
         if symbol == arcade.key.D:
-            self.v1.moving_right = False
-            if not self.v1.sliding:
-                self.v1.sliding_direction = 'right'
+            self.player.moving_right = False
         if symbol == arcade.key.A:
-            self.v1.moving_left = False
-            if not self.v1.sliding:
-                self.v1.sliding_direction = 'left'
-        if symbol == arcade.key.LCTRL:
-            if self.v1.sliding:
-                self.v1.sliding = False
+            self.player.moving_left = False
+        if symbol == arcade.key.W:
+            self.player.moving_up = False
+        if symbol == arcade.key.S:
+            self.player.moving_down = False
 
 def main():
     game = Game(200)
     arcade.run()
+
+if __name__ == "__main__":
+    main()
